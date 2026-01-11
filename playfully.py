@@ -59,3 +59,32 @@ def box(__s: str, /) -> str:
     result.append(f"└{'─' * width(__s)}┘")
     
     return "\n".join(result)
+
+def join(__a: str, __b: str, /) -> str:
+	result: str = ""
+
+	if height(__a) > height(__b):
+		for _ in range(height(__b)):
+			result += f"{__a.splitlines()[_]:<{width(__a)}}" + f"{__b.splitlines()[_]}\n"
+
+		for _ in range(height(__a) - height(__b)):
+			result += f"{__a.splitlines()[_ + height(__b)]}\n"
+
+		return result[:-1]
+
+	elif height(__b) > height(__a):
+		paddings: str = " " * width(__a)
+		
+		for _ in range(height(__a)):
+			result += f"{__a.splitlines()[_]:<{width(__a)}}" + f"{__b.splitlines()[_]}\n"
+
+		for _ in range(height(__b) - height(__a)):
+			result += f"{paddings}{__b.splitlines()[_ + height(__a)]}\n"
+
+		return result[:-1]
+
+	else:
+		for _ in range(height(__b)):
+			result += f"{__a.splitlines()[_]:<{width(__a)}}" + f"{__b.splitlines()[_]}\n"
+
+		return result[:-1]
