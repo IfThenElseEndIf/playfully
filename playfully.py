@@ -61,6 +61,10 @@ def box(__s: str, /) -> str:
     return "\n".join(result)
 
 def join(__a: str, __b: str, /) -> str:
+	if not isinstance(__B, str):
+        raise TypeError(f"expected 'str' but got {type(__a).__name__!r}")
+	if not isinstance(__B, str):
+        raise TypeError(f"expected 'str' but got {type(__b).__name__!r}")
 	result: str = ""
 
 	if height(__a) > height(__b):
